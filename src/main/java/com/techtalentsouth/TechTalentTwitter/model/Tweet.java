@@ -1,6 +1,6 @@
 package com.techtalentsouth.TechTalentTwitter.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,33 +32,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Tweet {
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "tweet_id")
-	private Long id;
-		
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "tweet_id")
+    private Long id;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User user;
-		
+    @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user;
+	
 	@NotEmpty(message = "Tweet cannot be empty")
 	@Length(max = 280, message = "Tweet cannot have more than 280 characters")
-	private String message;
-		
+    private String message;
+	
 	@CreationTimestamp 
 	private Date createdAt;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "tweet_tag", joinColumns = @JoinColumn(name = "tweet_id"),
-	    inverseJoinColumns = @JoinColumn(name = "tag_id"))
-	private List<Tag> tags;
-
+    @JoinTable(name = "tweet_tag", joinColumns = @JoinColumn(name = "tweet_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
 }
-
-
-
-
-
 

@@ -1,21 +1,22 @@
 package com.techtalentsouth.TechTalentTwitter.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private Long id;
-    private String role;
+public class TweetDisplay {
+    private User user;
+	
+    private String message;
+	
+	private String date;
+	
+    private List<Tag> tags;
 }

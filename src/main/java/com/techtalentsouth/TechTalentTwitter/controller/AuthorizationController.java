@@ -22,7 +22,7 @@ public class AuthorizationController {
     public String login(){
         return "login";
     }
-    
+
     @GetMapping(value="/signup")
     public String registration(Model model){
         User user = new User();
@@ -43,5 +43,4 @@ public class AuthorizationController {
         }
         return "registration";
     }
-	
 }
